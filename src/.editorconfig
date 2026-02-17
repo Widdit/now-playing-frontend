@@ -1,0 +1,18 @@
+# 表示这是最顶层的配置文件，停止向上查找
+root = true
+
+# 匹配所有文件
+[*]
+# 使用空格代替制表符
+indent_style = space
+# 缩进大小为 2 个空格
+indent_size = 2
+# 文件末尾添加一个空行
+insert_final_newline = true
+# 去除行尾的空格
+trim_trailing_whitespace = true
+
+# 针对特定文件类型的配置可以在这里添加
+[*.md]
+# Markdown 文件可能不需要去除行尾空格
+trim_trailing_whitespace = false

@@ -1,0 +1,151 @@
+@import "tailwindcss";
+@import "overlayscrollbars/overlayscrollbars.css";
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  src: url('/assets/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/assets/poppins.regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/assets/poppins.semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/assets/poppins.bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SourceHanHeavyMin';
+  src: url('/assets/SourceHanSansCN-Heavy-min.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DelaGothicOne';
+  src: url('/assets/DelaGothicOne-Regular-min.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+ul li::marker {
+  color: hsl(240 5.2% 33.92%);
+}
+
+.custom-underline {
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-underline:hover {
+  color: hsl(210, 3%, 86%);
+}
+
+.custom-underline:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1.5px;
+  background-color: hsl(240 5.2% 33.92%);
+}
+
+.text-color-desc {
+  color: #8c8c92;
+}
+
+@layer components {
+  .simple-code-editor textarea:focus {
+    @apply outline-none ring-0 shadow-none;
+  }
+}
+
+.simple-code-editor {
+  min-height: 100%;
+}
+
+.simple-code-editor pre,
+.simple-code-editor textarea {
+  height: auto;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+/* 自定义滚动条轨道 */
+.os-scrollbar {
+  --os-size: 10px;
+  --os-padding-perpendicular: 2px;
+  --os-padding-axis: 4px;
+  --os-track-border-radius: 9999px;
+  --os-handle-border-radius: 9999px;
+  --os-handle-bg: #3d3d45;
+  --os-handle-bg-hover: #52525b;
+  --os-handle-bg-active: #71717a;
+}
+
+/* 滑块过渡效果 */
+.os-scrollbar .os-scrollbar-handle {
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+/* 轨道背景透明 */
+.os-scrollbar .os-scrollbar-track {
+  background: transparent;
+}
+
+/* 组件强制背景透明 */
+html.widget-transparent,
+html.widget-transparent body,
+html.widget-transparent #root,
+html.widget-transparent main {
+  background: transparent !important;
+}
+
+@keyframes breathing-bright {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.35);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.breathing-bg {
+  animation: breathing-bright 3.6s ease-in-out infinite;
+  will-change: transform, filter;
+}
+
+/* Toast 字体 */
+[data-toast="true"] {
+  font-family: "Poppins", sans-serif;
+}
+
+@config "../../tailwind.config.js"

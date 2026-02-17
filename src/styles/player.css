@@ -1,0 +1,67 @@
+#vertical-song-info {
+  gap: 20px;
+  padding-top: 64px;
+  padding-bottom: 16px;
+  padding-left: 52px;
+  padding-right: 52px;
+}
+
+#vertical-cover-wrapper {
+  width: 6em;
+  height: 6em;
+}
+
+#vertical-title {
+  font-size: 1.35em;
+}
+
+#vertical-author {
+  font-size: 1.25em;
+}
+
+#vertical-progress-wrapper {
+  padding-top: 16px;
+  padding-bottom: 48px;
+  padding-left: 52px;
+  padding-right: 52px;
+}
+
+#vertical-lyric-player-wrapper ._interludeDots_ut4sn_151 {
+  padding-left: 0.7em;
+  padding-right: 0.7em;
+}
+
+@media (max-width: 500px) {
+  #vertical-song-info {
+    gap: 16px;
+    padding-top: 64px;
+    padding-bottom: 12px;
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+
+  #vertical-cover-wrapper {
+    width: 4.5em;
+    height: 4.5em;
+  }
+
+  #vertical-title {
+    font-size: 1.1em;
+  }
+
+  #vertical-author {
+    font-size: 1em;
+  }
+
+  #vertical-progress-wrapper {
+    padding-top: 16px;
+    padding-bottom: 48px;
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+
+  #vertical-lyric-player-wrapper ._interludeDots_ut4sn_151 {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
