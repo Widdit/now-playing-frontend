@@ -1,7 +1,5 @@
 <div align="center">
 
-# Now Playing
-
 ![](/images/now_playing_release_banner.png)
 
   <p>
