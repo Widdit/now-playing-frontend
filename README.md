@@ -46,6 +46,6 @@ npm run build
 >
 > AMLL 以其强大的功能、灵活的配置和良好的兼容性，让本项目的歌词解析与展示成为可能。
 
-> **[HeroUI](https://heroui.com)**
+> **[HeroUI 组件库](https://heroui.com)**
 >
 > HeroUI 提供现代化 UI 组件库，赋予了本项目简洁优雅的视觉风格。
