@@ -1,6 +1,6 @@
 <div align="center">
 
-![](/images/now_playing_release_banner.png)
+![](/images/now_playing_2_banner_2.png)
 
   <p>
     Now Playing 前端代码仓库
