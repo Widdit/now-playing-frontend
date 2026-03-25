@@ -1,17 +1,21 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Image } from "@heroui/image";
 import { Cast } from "@mynaui/icons-react";
-import { Server } from "lucide-react";
+import { Server, Clapperboard } from "lucide-react";
+import { PersonFill } from "@gravity-ui/icons";
 import { Card, CardBody, CardFooter } from "@heroui/card";
-import { useNavigate } from "react-router-dom";
 import { Spacer } from "@heroui/spacer";
-import React from "react";
+import { Chip } from "@heroui/chip";
+import { useOpenExternalUrl } from "@/hooks/useOpenExternalUrl";
 
 export default function ExtensionPage() {
   const navigate = useNavigate();
+  const { openExternalUrl } = useOpenExternalUrl();
 
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col w-full max-w-[800px] py-6 px-10 gap-6">
+      <div className="flex flex-col w-full max-w-[800px] py-6 px-10 gap-6 font-poppins">
         <h1 className="text-3xl text-white font-bold leading-9">扩展功能</h1>
 
         <div className="gap-4 grid grid-cols-2">
@@ -81,6 +85,51 @@ export default function ExtensionPage() {
               </div>
               <p className="!text-left text-sm text-default-500 w-full">
                 通过内置服务器部署前端页面
+              </p>
+            </CardFooter>
+          </Card>
+
+          {/* PV Tool */}
+          <Card
+            key="pv-tool"
+            isHoverable
+            isPressable
+            className="transition-all duration-500 hover:scale-102"
+            classNames={{
+              footer: "p-5",
+            }}
+            shadow="sm"
+            onPress={() => {
+              openExternalUrl("https://pv.pixjam.cn/?np=1&t=3");
+            }}
+          >
+            <CardBody className="overflow-visible p-0 relative">
+              <Image
+                className="w-full object-cover h-[180px]"
+                radius="lg"
+                src="/assets/pv-tool-preview.png"
+                width="100%"
+              />
+              <Chip
+                className="absolute top-3.5 left-4 z-10 backdrop-blur-md bg-black/15"
+                size="sm"
+                variant="flat"
+              >
+                <span className="flex items-center gap-1">
+                  <PersonFill width={16} height={16} />
+                  <span>索拉里斯星__</span>
+                </span>
+              </Chip>
+            </CardBody>
+            <CardFooter className="flex flex-col gap-2">
+              <div className="w-full flex justify-between">
+                <span className="text-lg text-white font-bold leading-6">
+                  PV Tool
+                </span>
+                <Clapperboard size={22} strokeWidth={1.5} />
+              </div>
+              <p className="!text-left text-sm text-default-500 w-full">
+                打造 PV 风格歌词动态文字效果
               </p>
             </CardFooter>
           </Card>
