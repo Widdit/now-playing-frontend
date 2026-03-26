@@ -29,6 +29,7 @@ export interface SettingsLyric {
   timeOffset: number;
   showTitleWhenNoLyric: boolean;
   noLyricText: string;
+  hideOnPause: boolean;
   currentLyricEnhanced: boolean;
   lyricBaseOpacity: number;
   subLineOpacity: number;
@@ -74,6 +75,7 @@ export const DEFAULT_SETTINGS_LYRIC: SettingsLyric = {
   timeOffset: 0,
   showTitleWhenNoLyric: false,
   noLyricText: "纯音乐，请欣赏",
+  hideOnPause: false,
   currentLyricEnhanced: false,
   lyricBaseOpacity: 0.4,
   subLineOpacity: 0.3,

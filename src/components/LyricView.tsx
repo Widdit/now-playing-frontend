@@ -324,6 +324,10 @@ export const LyricView = forwardRef<LyricViewRef, LyricViewProps>((props, ref) =
     settings.strokeEnabled,
   ]);
 
+  // 暂停时隐藏：计算不透明度和过渡样式
+  const hideOnPauseOpacity = settings.hideOnPause ? (isPaused ? 0 : 1) : undefined;
+  const hideOnPauseTransition = settings.hideOnPause ? "opacity 0.5s ease" : undefined;
+
   return (
     <>
       <style>{fontFaceStyle}</style>
@@ -351,6 +355,8 @@ export const LyricView = forwardRef<LyricViewRef, LyricViewProps>((props, ref) =
           textShadow: textShadowStyle,
           textAlign: settings.textAlign as React.CSSProperties["textAlign"],
           transform: `perspective(${settings.perspective}px) rotateX(${settings.rotateX}deg) rotateY(${settings.rotateY}deg) translateX(${settings.translateX}px) translateY(${settings.translateY}px)`,
+          opacity: hideOnPauseOpacity,
+          transition: hideOnPauseTransition,
           ...style,
         }}
       />

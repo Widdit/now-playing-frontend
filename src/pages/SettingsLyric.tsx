@@ -1172,6 +1172,22 @@ export default function LyricSettingsPage() {
                   可见性
                 </h2>
 
+                {/* 暂停时隐藏 */}
+                <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
+                  <div className="flex flex-col gap-[2px]">
+                    <span>暂停时隐藏</span>
+                    <span className="text-color-desc text-sm">
+                      当歌曲暂停时自动隐藏歌词
+                    </span>
+                  </div>
+                  <Switch
+                    isSelected={settings.hideOnPause}
+                    onValueChange={(isSelected) => {
+                      setSettings(prev => ({ ...prev, hideOnPause: isSelected }));
+                    }}
+                  />
+                </div>
+
                 {/* 增强当前歌词行 */}
                 <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
                   <div className="flex flex-col gap-[2px]">
