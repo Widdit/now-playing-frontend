@@ -32,7 +32,7 @@ let ws: WebSocket | null = null;
 let reconnectTimeout: ReturnType<typeof setTimeout> | null = null;
 let timerRef: Timer | null = null;
 let settingsRef: SettingsLyric | null = null;
-const PROGRESS_COMPENSATION_MS = 140; // 用于补偿进度条延迟（即 Now Playing 的进度略慢于音乐软件的真实进度）
+const PROGRESS_COMPENSATION_MS = 130; // 用于补偿进度条延迟（即 Now Playing 的进度略慢于音乐软件的真实进度）
 
 // ============ 歌词解析逻辑 ============
 
