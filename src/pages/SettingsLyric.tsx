@@ -405,9 +405,9 @@ export default function LyricSettingsPage() {
 
                 {/* 智能匹配最佳歌词 */}
                 <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
-                  <div className="flex flex-col gap-[2px]">
+                  <div className="flex flex-col gap-[2px] min-w-0">
                     <span>智能匹配最佳歌词</span>
-                    <span className="flex items-center text-color-desc text-sm">
+                    <span className="text-color-desc text-sm">
                       同时从两种歌词源获取歌词，返回最佳结果
                       <Tooltip
                         className="px-3"
@@ -417,7 +417,9 @@ export default function LyricSettingsPage() {
                         delay={200}
                         placement="bottom"
                       >
-                        <InfoCircle className="ml-1 z-[2]" size={16} />
+                        <span className="inline-flex align-middle ml-1">
+                          <InfoCircle className="z-[2]" size={16} />
+                        </span>
                       </Tooltip>
                     </span>
                   </div>
@@ -1342,9 +1344,9 @@ export default function LyricSettingsPage() {
 
                 {/* 弹性动画 */}
                 <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
-                  <div className="flex flex-col gap-[2px]">
+                  <div className="flex flex-col gap-[2px] min-w-0">
                     <span>弹性动画</span>
-                    <span className="flex items-center text-color-desc text-sm">
+                    <span className="text-color-desc text-sm">
                       歌词切换时的回弹动画效果
                       <Tooltip
                         className="px-3"
@@ -1354,7 +1356,9 @@ export default function LyricSettingsPage() {
                         delay={200}
                         placement="bottom"
                       >
-                        <InfoCircle className="ml-1 z-[2]" size={16} />
+                        <span className="inline-flex align-middle ml-1">
+                          <InfoCircle className="z-[2]" size={16} />
+                        </span>
                       </Tooltip>
                     </span>
                   </div>
@@ -1368,9 +1372,9 @@ export default function LyricSettingsPage() {
 
                 {/* 模糊效果 */}
                 <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
-                  <div className="flex flex-col gap-[2px]">
+                  <div className="flex flex-col gap-[2px] min-w-0">
                     <span>模糊效果</span>
-                    <span className="flex items-center text-color-desc text-sm">
+                    <span className="text-color-desc text-sm">
                       非当前歌词行的模糊处理
                       <Tooltip
                         className="px-3"
@@ -1380,7 +1384,9 @@ export default function LyricSettingsPage() {
                         delay={200}
                         placement="bottom"
                       >
-                        <InfoCircle className="ml-1 z-[2]" size={16} />
+                        <span className="inline-flex align-middle ml-1">
+                          <InfoCircle className="z-[2]" size={16} />
+                        </span>
                       </Tooltip>
                     </span>
                   </div>
@@ -1394,9 +1400,9 @@ export default function LyricSettingsPage() {
 
                 {/* 缩放效果 */}
                 <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
-                  <div className="flex flex-col gap-[2px]">
+                  <div className="flex flex-col gap-[2px] min-w-0">
                     <span>缩放效果</span>
-                    <span className="flex items-center text-color-desc text-sm">
+                    <span className="text-color-desc text-sm">
                       当前歌词行的放大强调效果
                       <Tooltip
                         className="px-3"
@@ -1406,7 +1412,9 @@ export default function LyricSettingsPage() {
                         delay={200}
                         placement="bottom"
                       >
-                        <InfoCircle className="ml-1 z-[2]" size={16} />
+                        <span className="inline-flex align-middle ml-1">
+                          <InfoCircle className="z-[2]" size={16} />
+                        </span>
                       </Tooltip>
                     </span>
                   </div>
@@ -1574,9 +1582,9 @@ export default function LyricSettingsPage() {
 
                 {/* 3D 透视强度 */}
                 <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
-                  <div className="flex flex-col gap-[2px]">
+                  <div className="flex flex-col gap-[2px] min-w-0">
                     <span>3D 透视强度</span>
-                    <span className="flex items-center text-color-desc text-sm">
+                    <span className="text-color-desc text-sm">
                       歌词与视点之间的距离
                       <Tooltip
                         className="px-3 font-poppins"
@@ -1586,7 +1594,9 @@ export default function LyricSettingsPage() {
                         delay={200}
                         placement="bottom"
                       >
-                        <InfoCircle className="ml-1 z-[2]" size={16} />
+                        <span className="inline-flex align-middle ml-1">
+                          <InfoCircle className="z-[2]" size={16} />
+                        </span>
                       </Tooltip>
                     </span>
                   </div>
@@ -1610,9 +1620,9 @@ export default function LyricSettingsPage() {
 
                 {/* 上下倾斜角度 */}
                 <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
-                  <div className="flex flex-col gap-[2px]">
+                  <div className="flex flex-col gap-[2px] min-w-0">
                     <span>上下倾斜角度</span>
-                    <span className="flex items-center text-color-desc text-sm">
+                    <span className="text-color-desc text-sm">
                       歌词在垂直方向的倾斜角度
                       <Tooltip
                         className="px-3 font-poppins"
@@ -1622,7 +1632,9 @@ export default function LyricSettingsPage() {
                         delay={200}
                         placement="bottom"
                       >
-                        <InfoCircle className="ml-1 z-[2]" size={16} />
+                        <span className="inline-flex align-middle ml-1">
+                          <InfoCircle className="z-[2]" size={16} />
+                        </span>
                       </Tooltip>
                     </span>
                   </div>
@@ -1646,9 +1658,9 @@ export default function LyricSettingsPage() {
 
                 {/* 左右倾斜角度 */}
                 <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
-                  <div className="flex flex-col gap-[2px]">
+                  <div className="flex flex-col gap-[2px] min-w-0">
                     <span>左右倾斜角度</span>
-                    <span className="flex items-center text-color-desc text-sm">
+                    <span className="text-color-desc text-sm">
                       歌词在水平方向的倾斜角度
                       <Tooltip
                         className="px-3 font-poppins"
@@ -1658,7 +1670,9 @@ export default function LyricSettingsPage() {
                         delay={200}
                         placement="bottom"
                       >
-                        <InfoCircle className="ml-1 z-[2]" size={16} />
+                        <span className="inline-flex align-middle ml-1">
+                          <InfoCircle className="z-[2]" size={16} />
+                        </span>
                       </Tooltip>
                     </span>
                   </div>
