@@ -13,6 +13,7 @@ export interface SettingsLyric {
   strokeEnabled: boolean;
   strokeColor: string;
   alignPosition: number;
+  alignAnchor: "center" | "top" | "bottom";
   hidePassedLines: boolean;
   backgroundEnabled: boolean;
   backgroundRenderer: string;
@@ -54,6 +55,7 @@ export const DEFAULT_SETTINGS_LYRIC: SettingsLyric = {
   strokeEnabled: false,
   strokeColor: "rgba(163, 99, 217, 1)",
   alignPosition: 0.5,
+  alignAnchor: "center",
   hidePassedLines: false,
   backgroundEnabled: true,
   backgroundRenderer: "MeshGradientRenderer",

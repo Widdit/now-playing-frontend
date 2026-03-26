@@ -21,6 +21,9 @@ import {
   AArrowDown,
   AArrowUp,
   Delete,
+  AlignVerticalJustifyStart,
+  AlignVerticalJustifyCenter,
+  AlignVerticalJustifyEnd,
 } from "lucide-react";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import type { OverlayScrollbarsComponentRef } from "overlayscrollbars-react";
@@ -1442,6 +1445,81 @@ export default function LyricSettingsPage() {
                   />
                 </div>
 
+                {/* 基准对齐方式 */}
+                <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-2 p-0 h-16">
+                  <div className="flex flex-col gap-[2px]">
+                    <span>基准对齐方式</span>
+                    <span className="text-color-desc text-sm">
+                      当前歌词行的对齐锚点
+                    </span>
+                  </div>
+                  <Tabs
+                    classNames={{
+                      tabList: "p-1",
+                      tab: "h-8.5",
+                      tabContent: "text-default-600",
+                    }}
+                    color="primary"
+                    radius="lg"
+                    selectedKey={settings.alignAnchor}
+                    onSelectionChange={(key) => {
+                      setSettings(prev => ({
+                        ...prev,
+                        alignAnchor: key as SettingsLyric["alignAnchor"],
+                      }));
+                    }}
+                  >
+                    <Tab
+                      key="top"
+                      title={
+                        <Tooltip
+                          className="px-3"
+                          closeDelay={200}
+                          content="顶部对齐"
+                          delay={200}
+                          placement="top"
+                        >
+                          <div className="flex items-center justify-center w-[24px] h-[24px]">
+                            <AlignVerticalJustifyStart size={18} />
+                          </div>
+                        </Tooltip>
+                      }
+                    />
+                    <Tab
+                      key="center"
+                      title={
+                        <Tooltip
+                          className="px-3"
+                          closeDelay={200}
+                          content="中心对齐"
+                          delay={200}
+                          placement="top"
+                        >
+                          <div className="flex items-center justify-center w-[24px] h-[24px]">
+                            <AlignVerticalJustifyCenter size={18} />
+                          </div>
+                        </Tooltip>
+                      }
+                    />
+                    <Tab
+                      key="bottom"
+                      title={
+                        <Tooltip
+                          className="px-3"
+                          closeDelay={200}
+                          content="底部对齐"
+                          delay={200}
+                          placement="top"
+                        >
+                          <div className="flex items-center justify-center w-[24px] h-[24px]">
+                            <AlignVerticalJustifyEnd size={18} />
+                          </div>
+                        </Tooltip>
+                      }
+                    />
+                  </Tabs>
+                </div>
+
                 {/* 水平位移 */}
                 <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
                   <div className="flex flex-col gap-[2px]">
@@ -1928,7 +2006,7 @@ export default function LyricSettingsPage() {
                       className="w-full h-full"
                       profileId={profileId}
                       alignPosition={settings.alignPosition}
-                      alignAnchor="center"
+                      alignAnchor={settings.alignAnchor}
                       settings={settings}
                     />
                   </div>

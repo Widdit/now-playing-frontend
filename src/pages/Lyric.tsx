@@ -103,7 +103,7 @@ export default function LyricPage() {
             className="w-full h-full"
             profileId={profileId}
             alignPosition={settings.alignPosition}
-            alignAnchor="center"
+            alignAnchor={settings.alignAnchor}
             onSettingsChange={handleSettingsChange}
           />
         </div>
