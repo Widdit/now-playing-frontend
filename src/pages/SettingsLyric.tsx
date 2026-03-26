@@ -1124,10 +1124,10 @@ export default function LyricSettingsPage() {
                   />
                 </div>
 
-                {/* 隐藏已播歌词 */}
+                {/* 隐藏已唱歌词 */}
                 <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
                   <div className="flex flex-col gap-[2px]">
-                    <span>隐藏已播歌词</span>
+                    <span>隐藏已唱歌词</span>
                     <span className="text-color-desc text-sm">
                       已播放歌词自动隐藏
                     </span>
@@ -1162,6 +1162,92 @@ export default function LyricSettingsPage() {
                     value={settings.interludeDotsPosition}
                     onValueChange={(val) => {
                       setSettings(prev => ({ ...prev, interludeDotsPosition: val }));
+                    }}
+                  />
+                </div>
+
+                <Divider />
+
+                <h2 className="text-base text-default-800 font-bold leading-6">
+                  可见性
+                </h2>
+
+                {/* 增强当前歌词行 */}
+                <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
+                  <div className="flex flex-col gap-[2px]">
+                    <span>增强当前歌词行</span>
+                    <span className="text-color-desc text-sm">
+                      使当前歌词行的显示效果更突出
+                    </span>
+                  </div>
+                  <Switch
+                    isSelected={settings.currentLyricEnhanced}
+                    onValueChange={(isSelected) => {
+                      setSettings(prev => ({ ...prev, currentLyricEnhanced: isSelected }));
+                    }}
+                  />
+                </div>
+
+                {/* 未唱歌词不透明度 */}
+                <div className="flex flex-col gap-2 items-center justify-center w-full max-w-full h-23">
+                  <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0">
+                    <div className="flex flex-col gap-[2px]">
+                      <span>未唱歌词不透明度</span>
+                      <span className="text-color-desc text-sm">
+                        未播放歌词的不透明度
+                      </span>
+                    </div>
+                    <div>
+                      {Math.round(settings.lyricBaseOpacity * 100)}%
+                    </div>
+                  </div>
+                  <Slider
+                    className="max-w-full w-full"
+                    color="foreground"
+                    size="sm"
+                    aria-label="Lyric Base Opacity Slider"
+                    maxValue={1}
+                    minValue={0}
+                    step={0.05}
+                    value={settings.lyricBaseOpacity}
+                    onChange={(val) => {
+                      const v = Array.isArray(val) ? val[0] : val;
+                      setSettings(prev => ({ ...prev, lyricBaseOpacity: v }));
+                    }}
+                  />
+                </div>
+
+                {/* 翻译歌词不透明度 */}
+                <div
+                  className={twMerge(
+                    "flex flex-col gap-2 items-center justify-center w-full max-w-full h-23",
+                    "overflow-hidden transition-all duration-400",
+                    settings.showTranslation ? "opacity-100 max-h-40" : "opacity-0 max-h-0 -my-2 pointer-events-none"
+                  )}
+                >
+                  <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0">
+                    <div className="flex flex-col gap-[2px]">
+                      <span>翻译歌词不透明度</span>
+                      <span className="text-color-desc text-sm">
+                        歌词翻译文字的不透明度
+                      </span>
+                    </div>
+                    <div>
+                      {Math.round(settings.subLineOpacity * 100)}%
+                    </div>
+                  </div>
+                  <Slider
+                    className="max-w-full w-full"
+                    color="foreground"
+                    size="sm"
+                    aria-label="SubLine Opacity Slider"
+                    maxValue={1}
+                    minValue={0}
+                    step={0.05}
+                    value={settings.subLineOpacity}
+                    onChange={(val) => {
+                      const v = Array.isArray(val) ? val[0] : val;
+                      setSettings(prev => ({ ...prev, subLineOpacity: v }));
                     }}
                   />
                 </div>

@@ -230,24 +230,42 @@ export const LyricView = forwardRef<LyricViewRef, LyricViewProps>((props, ref) =
       ? `filter: drop-shadow(${settings.shadowXOffset}px ${settings.shadowYOffset}px ${settings.shadowBlur}px ${settings.shadowColor});`
       : ``;
 
+    const currentLyricEnhancedStyle = settings.currentLyricEnhanced
+      ? `
+      ._lyricMainLine_ut4sn_98._active_ut4sn_62 {
+        opacity: 1 !important;
+      }
+      `
+      : ``;
+
     styleEl.innerHTML = `
       ._interludeDots_ut4sn_151 {
         left: ${settings.interludeDotsPosition}em;
         ${shadowStyle}
       }
 
+      ._lyricMainLine_ut4sn_98 {
+        --dark-mask-alpha: ${settings.lyricBaseOpacity};
+      }
+
       ._lyricSubLine_ut4sn_136 {
         font-size: max(${settings.subLineFontSize}em, 10px);
+        opacity: ${settings.subLineOpacity} !important;
       }
+
+      ${currentLyricEnhancedStyle}
     `;
   }, [
     settings.interludeDotsPosition,
     settings.subLineFontSize,
+    settings.subLineOpacity,
     settings.shadowEnabled,
     settings.shadowXOffset,
     settings.shadowYOffset,
     settings.shadowBlur,
     settings.shadowColor,
+    settings.currentLyricEnhanced,
+    settings.lyricBaseOpacity,
   ]);
 
   // font-face 样式
