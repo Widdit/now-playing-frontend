@@ -44,6 +44,7 @@ import { Advance50Icon, Delay50Icon, Reset0Icon  } from "@/components/TimeOffset
 import { refreshLocalFonts } from "@/contexts/FontContext";
 import { LyricView } from "@/components/LyricView";
 import { IntegrationCard } from "@/components/IntegrationCard";
+import { NewBadge } from "@/components/NewBadge";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useOpenExternalUrl } from "@/hooks/useOpenExternalUrl";
 import { SettingsLyric, DEFAULT_SETTINGS_LYRIC } from "@/types/backend/settingsLyric";
@@ -1169,7 +1170,10 @@ export default function LyricSettingsPage() {
                 <Divider />
 
                 <h2 className="text-base text-default-800 font-bold leading-6">
-                  可见性
+                  <span className="flex items-center gap-2">
+                    可见性
+                    <NewBadge />
+                  </span>
                 </h2>
 
                 {/* 暂停时隐藏 */}
