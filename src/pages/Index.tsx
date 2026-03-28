@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ShaderGradientCanvas, ShaderGradient } from "@shadergradient/react";
 import { Rocket } from "@mynaui/icons-react";
 import { Megaphone } from "lucide-react";
 import { Button } from "@heroui/button";
@@ -23,6 +22,7 @@ import testVersionData from "@/constants/test/version.json";
 import testAnnouncementData from "@/constants/test/announcement.json";
 import { versionCompare } from "@/utils/versionCompare";
 import TitleBar from "@/components/TitleBar";
+import LightPillar from "@/components/background/LightPillar";
 import { useEnv } from "@/contexts/EnvContext";
 import { useOpenExternalUrl } from "@/hooks/useOpenExternalUrl";
 import { timeSince } from "@/utils/timeSince";
@@ -218,11 +218,6 @@ export default function IndexPage() {
             user-select: none;
           }
 
-          #shader-gradient {
-            width: 100vw;
-            z-index: 0;
-          }
-
           body.fade-out {
             animation: dissolve 0.5s forwards;
           }
@@ -346,20 +341,23 @@ export default function IndexPage() {
                       id="main-content"
                     >
                       <div
-                        className="w-full h-full pointer-events-none"
-                        id="shader-gradient"
+                        className="absolute top-0 w-full h-full pointer-events-none z-0 bg-[#060010]"
+                        id="bg-container"
                       >
-                        <ShaderGradientCanvas
-                          style={{
-                            position: "absolute",
-                            top: 0,
-                          }}
-                        >
-                          <ShaderGradient
-                            control="query"
-                            urlString="https://www.shadergradient.co/customize?animate=on&axesHelper=off&bgColor1=%23000000&bgColor2=%23000000&brightness=1.4&cAzimuthAngle=180&cDistance=2.8&cPolarAngle=80&cameraZoom=9.1&color1=%23606080&color2=%238d7dca&color3=%23212121&destination=onCanvas&embedMode=off&envPreset=city&format=gif&fov=45&frameRate=10&gizmoHelper=hide&grain=on&lightType=3d&pixelDensity=1&positionX=0&positionY=0&positionZ=0&range=disabled&rangeEnd=2.8&rangeStart=0&reflection=0&rotationX=50&rotationY=0&rotationZ=-60&shader=defaults&type=waterPlane&uAmplitude=0&uDensity=0.9&uFrequency=0&uSpeed=0.3&uStrength=1.5&uTime=8&wireframe=false"
-                          />
-                        </ShaderGradientCanvas>
+                        <LightPillar
+                          topColor="#5227FF"
+                          bottomColor="#FF9FFC"
+                          intensity={1.5}
+                          rotationSpeed={0.3}
+                          glowAmount={0.002}
+                          pillarWidth={3}
+                          pillarHeight={0.4}
+                          noiseIntensity={0.5}
+                          pillarRotation={25}
+                          interactive={false}
+                          mixBlendMode="screen"
+                          quality="high"
+                        />
                       </div>
 
                       <div className="flex items-center justify-between">
