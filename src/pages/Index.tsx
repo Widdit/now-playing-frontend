@@ -347,7 +347,7 @@ export default function IndexPage() {
                         <LightPillar
                           topColor="#5227FF"
                           bottomColor="#FF9FFC"
-                          intensity={1.5}
+                          intensity={1.4}
                           rotationSpeed={0.3}
                           glowAmount={0.002}
                           pillarWidth={3}
