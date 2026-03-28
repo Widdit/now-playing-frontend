@@ -765,18 +765,18 @@ export default function AboutPage() {
                     className="shrink-0"
                     height={32}
                     radius="sm"
-                    src="/assets/ShaderGradient.png"
+                    src="/assets/react-bits.png"
                     width={32}
                   />
                 </div>
                 <div className="flex flex-col min-w-0">
-                  <p className="text-md truncate whitespace-nowrap">ShaderGradient</p>
+                  <p className="text-md truncate whitespace-nowrap">React Bits</p>
                   <Link
                     className="text-color-desc text-sm truncate whitespace-nowrap block cursor-pointer"
                     color="foreground"
-                    onPress={() => {openExternalUrl("https://shadergradient.co");}}
+                    onPress={() => {openExternalUrl("https://reactbits.dev");}}
                   >
-                    shadergradient.co
+                    reactbits.dev
                   </Link>
                 </div>
               </CardBody>
