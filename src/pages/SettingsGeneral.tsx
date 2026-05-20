@@ -7,6 +7,7 @@ import {
   ChevronDown,
   DangerTriangle,
   InfoCircle,
+  QuestionCircle,
 } from "@mynaui/icons-react";
 import { Folder } from "lucide-react"
 import { useDisclosure } from "@heroui/use-disclosure";
@@ -36,6 +37,8 @@ import { SpotifyIcon, YouTubeMusicIcon } from "@/components/Icons";
 import { PLATFORM_MAP } from "@/constants/platformMap";
 import { Sparkles } from "@/components/animate-icons/Sparkles";
 import { useEnv } from "@/contexts/EnvContext";
+import { useOpenExternalUrl } from "@/hooks/useOpenExternalUrl";
+import {Link} from "@heroui/link";
 
 // 音乐平台分组
 const platformGroups = {
@@ -181,6 +184,7 @@ export default function GeneralSettingsPage() {
   const [weSingCachePathExist, setWeSingCachePathExist] = useState(true);
 
   const { isDesktop } = useEnv();
+  const { openExternalUrl } = useOpenExternalUrl();
 
   const {
     isOpen: isDeviceHelpModalOpen,
@@ -204,6 +208,12 @@ export default function GeneralSettingsPage() {
     isOpen: isDesktopWidgetTipModalOpen,
     onOpen: onDesktopWidgetTipModalOpen,
     onOpenChange: onDesktopWidgetTipModalOpenChange,
+  } = useDisclosure();
+
+  const {
+    isOpen: isWeSingCacheHelpOpen,
+    onOpen: onWeSingCacheHelpOpen,
+    onOpenChange: onWeSingCacheHelpOpenChange,
   } = useDisclosure();
 
   const {
@@ -634,8 +644,23 @@ export default function GeneralSettingsPage() {
           </AnimatedRow>
           <AnimatedRow show={platform === "wesing"}>
             <div className="flex flex-col gap-3 mt-4">
-              <span className="text-primary-900 text-xs font-bold">
+              <span className="flex items-center text-primary-900 text-xs font-bold leading-none">
                 全民 K 歌缓存目录
+                <Tooltip
+                  className="px-3"
+                  closeDelay={200}
+                  content="查看帮助"
+                  delay={200}
+                  placement="right"
+                >
+                  <span className="flex items-center">
+                    <QuestionCircle
+                      className="ml-1 cursor-pointer shrink-0"
+                      size={14}
+                      onClick={onWeSingCacheHelpOpen}
+                    />
+                  </span>
+                </Tooltip>
               </span>
               <div className="flex gap-2">
                 <Input
@@ -1445,6 +1470,65 @@ export default function GeneralSettingsPage() {
                     alt="桌面组件小提示"
                     src="/assets/desktop-widget-tip.png"
                   />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="primary" onPress={onClose}>
+                    确定
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+
+        {/* 全民 K 歌缓存目录帮助模态框 */}
+        <Modal
+          isOpen={isWeSingCacheHelpOpen}
+          onOpenChange={onWeSingCacheHelpOpenChange}
+          scrollBehavior="inside"
+        >
+          <ModalContent className="font-poppins">
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">
+                  全民 K 歌缓存目录选择方法
+                </ModalHeader>
+                <ModalBody className="flex flex-col gap-4">
+                  <h2 className="text-base text-default-800 font-bold leading-6 font-poppins">
+                    1. 先生成缓存文件
+                  </h2>
+                  <ul className="list-disc flex flex-col gap-2 ml-4">
+                    <li className="ps-1 leading-8">打开全民 K 歌，随意播放几首歌曲（确保已经产生缓存数据）。</li>
+                  </ul>
+                  <h2 className="text-base text-default-800 font-bold leading-6 font-poppins">
+                    2. 查找缓存目录
+                  </h2>
+                  <ul className="list-disc flex flex-col gap-2 ml-4">
+                    <li className="ps-1 leading-8">在电脑中找到名为 <Code className="font-jetbrains">WeSingCache</Code> 的文件夹；</li>
+                    <li className="ps-1 leading-8">
+                      如果不清楚如何查找，建议使用文件搜索工具（如{" "}
+                      <Link
+                        className="cursor-pointer"
+                        showAnchorIcon
+                        onPress={() => {openExternalUrl("https://www.voidtools.com/zh-cn/downloads");}}
+                      >
+                        Everything
+                      </Link>
+                      ）进行快速定位。
+                    </li>
+                  </ul>
+                  <h2 className="text-base text-default-800 font-bold leading-6 font-poppins">
+                    3. 找不到目录怎么办？
+                  </h2>
+                  <ul className="list-disc flex flex-col gap-2 ml-4">
+                    <li className="ps-1 leading-8">如果未搜索到该文件夹，请返回第 1 步，再播放几首歌曲后重新搜索，系统会自动生成缓存目录。</li>
+                  </ul>
+                  <h2 className="text-base text-default-800 font-bold leading-6 font-poppins">
+                    4. 验证目录有效
+                  </h2>
+                  <ul className="list-disc flex flex-col gap-2 ml-4">
+                    <li className="ps-1 leading-8">确保选择完缓存目录后，软件设置页面没有出现红色报错。</li>
+                  </ul>
                 </ModalBody>
                 <ModalFooter>
                   <Button color="primary" onPress={onClose}>
