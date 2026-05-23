@@ -17,8 +17,8 @@ import { addToast } from "@heroui/toast";
 import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from "@heroui/drawer";
 import { Code } from "@heroui/code";
 import { Input } from "@heroui/input";
+import { Play } from "lucide-react";
 import CopyButton from "@/components/CopyButton";
-import { Send } from "@/components/animate-icons/Send";
 import SimulatedBrowserWindow from "@/components/SimulatedBrowserWindow";
 
 type LayoutOutletContext = {
@@ -203,14 +203,7 @@ export default function PageDeploymentExtensionPage() {
             <Button
               className="px-5"
               color={isUrlInvalid ? "default" : "primary"}
-              startContent={
-                <Send
-                  className="p-0"
-                  isHovered={isSendHovered}
-                  size={14}
-                  trigger="none"
-                />
-              }
+              startContent={<Play size={22} />}
               isDisabled={isUrlInvalid}
               onMouseEnter={() => setIsSendHovered(true)}
               onMouseLeave={() => setIsSendHovered(false)}
@@ -219,7 +212,7 @@ export default function PageDeploymentExtensionPage() {
                 setIframeKey((prev) => prev + 1);
               }}
             >
-              访问
+              预览
             </Button>
           </div>
 
