@@ -31,8 +31,8 @@ type SponsorRecord = {
 
 const columns = [
   { key: "date", label: "赞助时间", allowsSorting: true, width: 130 },
-  { key: "sponsor", label: "赞助者", allowsSorting: true, width: 196 },
-  { key: "amount", label: "赞助金额", allowsSorting: true, width: 130 },
+  { key: "sponsor", label: "赞助者", allowsSorting: true, width: 120 },
+  { key: "amount", label: "赞助金额", allowsSorting: true, width: 110 },
   { key: "message", label: "留言", allowsSorting: false },
 ];
 
