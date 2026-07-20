@@ -197,7 +197,7 @@ export default function SponsorPage() {
               <h1 className="text-xl text-default-800 font-bold leading-9">
                 赞助名单
               </h1>
-              <Tooltip closeDelay={200} content="数据统计截止时间" delay={50}>
+              <Tooltip closeDelay={200} content="数据统计时间" delay={50}>
                 <Chip
                   size="sm"
                   startContent={<ClockCircle className="mx-0.5" size={16} />}
