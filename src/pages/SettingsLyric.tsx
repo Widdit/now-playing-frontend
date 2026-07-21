@@ -45,7 +45,10 @@ import { refreshLocalFonts } from "@/contexts/FontContext";
 import { LyricView } from "@/components/LyricView";
 import { IntegrationCard } from "@/components/IntegrationCard";
 import { NewBadge } from "@/components/NewBadge";
-import { LYRIC_SOURCES } from "@/constants/lyricSources";
+import {
+  LYRIC_SOURCES,
+  LYRIC_SOURCE_TAB_CLASS,
+} from "@/constants/lyricSources";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useOpenExternalUrl } from "@/hooks/useOpenExternalUrl";
 import { SettingsLyric, DEFAULT_SETTINGS_LYRIC } from "@/types/backend/settingsLyric";
@@ -372,10 +375,10 @@ export default function LyricSettingsPage() {
                     </span>
                   </div>
                   <Tabs
-                    className="w-full min-w-0 max-w-full xl:w-auto"
+                    className="w-full min-w-0 max-w-full 2xl:w-auto"
                     classNames={{
-                      tabList: "p-1",
-                      tab: "h-8.5",
+                      tabList: "w-full p-1 2xl:w-auto",
+                      tab: LYRIC_SOURCE_TAB_CLASS,
                       tabContent: "text-default-600",
                     }}
                     color="primary"
@@ -393,10 +396,16 @@ export default function LyricSettingsPage() {
                         key={source.key}
                         title={
                           <div
-                            className={`flex items-center justify-center space-x-2 ${source.widthClass}`}
+                            className={`flex items-center justify-center space-x-1 2xl:space-x-2 ${source.widthClass}`}
                           >
-                            <img alt="" src={source.icon} className="h-4.5" />
-                            <span className="font-poppins">{source.label}</span>
+                            <img
+                              alt=""
+                              src={source.icon}
+                              className="hidden h-4.5 2xl:block"
+                            />
+                            <span className="font-poppins text-xs whitespace-nowrap 2xl:text-sm">
+                              {source.label}
+                            </span>
                           </div>
                         }
                       />
