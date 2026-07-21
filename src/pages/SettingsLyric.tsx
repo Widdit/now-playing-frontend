@@ -45,6 +45,7 @@ import { refreshLocalFonts } from "@/contexts/FontContext";
 import { LyricView } from "@/components/LyricView";
 import { IntegrationCard } from "@/components/IntegrationCard";
 import { NewBadge } from "@/components/NewBadge";
+import { LYRIC_SOURCES } from "@/constants/lyricSources";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useOpenExternalUrl } from "@/hooks/useOpenExternalUrl";
 import { SettingsLyric, DEFAULT_SETTINGS_LYRIC } from "@/types/backend/settingsLyric";
@@ -383,24 +384,17 @@ export default function LyricSettingsPage() {
                       setSettingsCommon(prev => ({ ...prev, lyricSource: String(key) }));
                     }}
                   >
-                    <Tab
-                      key="netease"
-                      title={
-                        <div className="flex items-center justify-center space-x-2 w-[100px]">
-                          <img src="/assets/netease_icon.png" className="h-4.5" />
-                          <span className="font-poppins">网易云音乐</span>
-                        </div>
-                      }
-                    />
-                    <Tab
-                      key="qq"
-                      title={
-                        <div className="flex items-center justify-center space-x-2 w-[80px]">
-                          <img src="/assets/qq_icon.png" className="h-4.5" />
-                          <span className="font-poppins">QQ音乐</span>
-                        </div>
-                      }
-                    />
+                    {LYRIC_SOURCES.map(source => (
+                      <Tab
+                        key={source.key}
+                        title={
+                          <div className={`flex items-center justify-center space-x-2 ${source.widthClass}`}>
+                            <img alt="" src={source.icon} className="h-4.5" />
+                            <span className="font-poppins">{source.label}</span>
+                          </div>
+                        }
+                      />
+                    ))}
                   </Tabs>
                 </div>
 
@@ -409,7 +403,7 @@ export default function LyricSettingsPage() {
                   <div className="flex flex-col gap-[2px] min-w-0">
                     <span>智能匹配最佳歌词</span>
                     <span className="text-color-desc text-sm">
-                      同时从两种歌词源获取歌词，返回最佳结果
+                      同时从多个歌词源获取歌词，返回最佳结果
                       <Tooltip
                         className="px-3"
                         closeDelay={200}
