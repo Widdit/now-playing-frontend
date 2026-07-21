@@ -364,14 +364,15 @@ export default function LyricSettingsPage() {
                 </h1>
 
                 {/* 歌词源 */}
-                <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-2 p-0 h-16">
-                  <div className="flex flex-col gap-[2px]">
+                <div className="group relative inline-flex flex-col w-full max-w-full items-stretch justify-between gap-3 p-0 h-auto xl:flex-row xl:items-center xl:h-16">
+                  <div className="flex flex-col gap-[2px] min-w-0">
                     <span>歌词源</span>
                     <span className="text-color-desc text-sm">
                       选定歌词获取来源
                     </span>
                   </div>
                   <Tabs
+                    className="w-full min-w-0 max-w-full xl:w-auto"
                     classNames={{
                       tabList: "p-1",
                       tab: "h-8.5",
@@ -381,14 +382,19 @@ export default function LyricSettingsPage() {
                     radius="lg"
                     selectedKey={settingsCommon.lyricSource}
                     onSelectionChange={(key) => {
-                      setSettingsCommon(prev => ({ ...prev, lyricSource: String(key) }));
+                      setSettingsCommon((prev) => ({
+                        ...prev,
+                        lyricSource: String(key),
+                      }));
                     }}
                   >
-                    {LYRIC_SOURCES.map(source => (
+                    {LYRIC_SOURCES.map((source) => (
                       <Tab
                         key={source.key}
                         title={
-                          <div className={`flex items-center justify-center space-x-2 ${source.widthClass}`}>
+                          <div
+                            className={`flex items-center justify-center space-x-2 ${source.widthClass}`}
+                          >
                             <img alt="" src={source.icon} className="h-4.5" />
                             <span className="font-poppins">{source.label}</span>
                           </div>
