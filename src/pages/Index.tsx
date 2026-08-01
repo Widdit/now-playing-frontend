@@ -22,7 +22,7 @@ import testVersionData from "@/constants/test/version.json";
 import testAnnouncementData from "@/constants/test/announcement.json";
 import { versionCompare } from "@/utils/versionCompare";
 import TitleBar from "@/components/TitleBar";
-import ColorBends from "@/components/background/ColorBends";
+import LightPillar from "@/components/background/LightPillar";
 import { useEnv } from "@/contexts/EnvContext";
 import { useOpenExternalUrl } from "@/hooks/useOpenExternalUrl";
 import { timeSince } from "@/utils/timeSince";
@@ -344,21 +344,19 @@ export default function IndexPage() {
                         className="absolute top-0 w-full h-full z-0 bg-[#060010]"
                         id="bg-container"
                       >
-                        <ColorBends
-                          colors={["#a855f7"]}
-                          rotation={90}
-                          speed={0.2}
-                          scale={1}
-                          frequency={1}
-                          warpStrength={1}
-                          mouseInfluence={1}
-                          noise={0.15}
-                          parallax={0.5}
-                          iterations={1}
-                          intensity={1.5}
-                          bandWidth={6}
-                          transparent
-                          autoRotate={0}
+                        <LightPillar
+                          topColor="#5227FF"
+                          bottomColor="#FF9FFC"
+                          intensity={1.4}
+                          rotationSpeed={0.3}
+                          glowAmount={0.002}
+                          pillarWidth={3}
+                          pillarHeight={0.4}
+                          noiseIntensity={0.5}
+                          pillarRotation={25}
+                          interactive={false}
+                          mixBlendMode="screen"
+                          quality="high"
                         />
                       </div>
 
