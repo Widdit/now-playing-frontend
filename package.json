@@ -67,6 +67,7 @@
     "jotai": "^2.16.1",
     "lucide-react": "^0.562.0",
     "meshline": "^3.3.1",
+    "opencc-js": "^1.4.1",
     "overlayscrollbars": "^2.13.0",
     "overlayscrollbars-react": "^0.5.6",
     "qr-code-styling": "^1.9.2",

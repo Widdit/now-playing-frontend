@@ -26,6 +26,7 @@ export interface SettingsLyric {
   showTranslation: boolean;
   subLineFontSize: number;
   karaokeLyricEnabled: boolean;
+  convertToTraditional: boolean;
   timeOffset: number;
   showTitleWhenNoLyric: boolean;
   noLyricText: string;
@@ -72,6 +73,7 @@ export const DEFAULT_SETTINGS_LYRIC: SettingsLyric = {
   showTranslation: true,
   subLineFontSize: 0.5,
   karaokeLyricEnabled: true,
+  convertToTraditional: false,
   timeOffset: 0,
   showTitleWhenNoLyric: false,
   noLyricText: "纯音乐，请欣赏",

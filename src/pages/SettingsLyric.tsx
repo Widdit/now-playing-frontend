@@ -1141,6 +1141,22 @@ export default function LyricSettingsPage() {
                   />
                 </div>
 
+                {/* 繁体中文模式 */}
+                <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
+                  <div className="flex flex-col gap-[2px]">
+                    <span>繁体中文模式</span>
+                    <span className="text-color-desc text-sm">
+                      让歌词以繁体中文显示
+                    </span>
+                  </div>
+                  <Switch
+                    isSelected={settings.convertToTraditional}
+                    onValueChange={(isSelected) => {
+                      setSettings(prev => ({ ...prev, convertToTraditional: isSelected }));
+                    }}
+                  />
+                </div>
+
                 {/* 间奏提示点位置 */}
                 <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
                   <div className="flex flex-col gap-[2px]">
