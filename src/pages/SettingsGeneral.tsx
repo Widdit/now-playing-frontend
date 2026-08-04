@@ -45,7 +45,7 @@ const platformGroups = {
   domestic: ["netease", "qq", "kugou", "kuwo", "soda", "wesing"],
   foreign: ["spotify", "apple", "youtube"],
   jukebox: ["miebo", "ayna", "huahua", "bq"],
-  local: ["potplayer", "foobar", "aimp"],
+  local: ["potplayer", "foobar", "aimp", "saltplayer"],
   other: ["lx", "musicfree", "cider", "yesplay"],
 };
 
@@ -829,7 +829,7 @@ export default function GeneralSettingsPage() {
                 color="primary"
                 radius="lg"
                 selectedKey={
-                  ["potplayer", "foobar", "aimp"].includes(platform as string)
+                  ["potplayer", "foobar", "aimp", "saltplayer"].includes(platform as string)
                     ? platform
                     : "none"
                 }
@@ -848,6 +848,11 @@ export default function GeneralSettingsPage() {
                 <Tab
                   key="aimp"
                   title={<TabTitle icon={<img className="h-4.5" src="/assets/aimp_icon.png" />} label="AIMP" />}
+                  onClick={changePlatform}
+                />
+                <Tab
+                  key="saltplayer"
+                  title={<TabTitle icon={<img className="h-4.5" src="/assets/saltplayer_icon.png" />} label="Salt Player" />}
                   onClick={changePlatform}
                 />
               </Tabs>
