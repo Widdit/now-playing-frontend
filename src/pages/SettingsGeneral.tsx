@@ -145,9 +145,9 @@ const TabTitle: React.FC<{ icon: React.ReactNode; label: string }> = ({icon, lab
   }, []);
 
   const content = (
-    <div className="flex items-center space-x-0 min-[644px]:space-x-2">
-      {icon}
-      <span className="hidden min-[644px]:inline font-poppins">{label}</span>
+    <div className="flex min-w-0 items-center justify-center gap-0 min-[644px]:gap-2">
+      <span className="flex shrink-0 items-center justify-center">{icon}</span>
+      <span className="hidden min-w-0 truncate min-[644px]:inline font-poppins">{label}</span>
     </div>
   );
 
@@ -822,11 +822,13 @@ export default function GeneralSettingsPage() {
               </span>
               <Tabs
                 classNames={{
-                  tabList: "p-1.5 w-3/4",
-                  tab: "h-10",
-                  tabContent: "text-default-600",
+                  base: "w-full xl:w-3/4",
+                  tabList: "p-1.5 w-full grid grid-cols-4",
+                  tab: "h-10 min-w-0 px-2",
+                  tabContent: "text-default-600 w-full",
                 }}
                 color="primary"
+                fullWidth={true}
                 radius="lg"
                 selectedKey={
                   ["potplayer", "foobar", "aimp", "saltplayer"].includes(platform as string)
