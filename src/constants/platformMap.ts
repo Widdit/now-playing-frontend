@@ -19,4 +19,6 @@ export const PLATFORM_MAP: Record<string, string> = {
   yesplay: "YesPlayMusic",
   cider: "Cider",
   wesing: "全民K歌",
+  browser: "浏览器",
+  salt: "Salt Player"
 };
