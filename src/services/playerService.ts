@@ -32,6 +32,7 @@ let ws: WebSocket | null = null;
 let reconnectTimeout: ReturnType<typeof setTimeout> | null = null;
 let timerRef: Timer | null = null;
 let settingsRef: SettingsLyric | null = null;
+let lyricParseRevision = 0;
 const PROGRESS_COMPENSATION_MS = 130; // 用于补偿进度条延迟（即 Now Playing 的进度略慢于音乐软件的真实进度）
 
 // ============ 歌词解析逻辑 ============
@@ -235,8 +236,13 @@ async function parseLyricLines(settings: SettingsLyric): Promise<CoreLyricLine[]
  * 根据当前的歌词数据和设置更新歌词行 Atom
  */
 async function updateLyricLinesAtom() {
-  if (!settingsRef) return;
-  const lines = await parseLyricLines(settingsRef);
+  const revision = ++lyricParseRevision;
+  const settings = settingsRef;
+  if (!settings) return;
+
+  const lines = await parseLyricLines(settings);
+  if (revision !== lyricParseRevision || settingsRef === null) return;
+
   store.set(lyricLinesAtom, lines);
 }
 
@@ -251,6 +257,9 @@ function handleTrackEvent(data: any) {
   store.set(coverUrlAtom, data.cover || "");
   store.set(durationAtom, data.duration || 0);
   store.set(albumAtom, data.album || "");
+
+  // Track 与 Lyric 事件没有固定先后顺序；元数据变化后按当前完整状态重算。
+  void updateLyricLinesAtom();
 
   // 歌曲切换时重置并启动计时器
   if (timerRef) {
@@ -272,7 +281,7 @@ function handleLyricEvent(data: any) {
   store.set(karaokeLyricAtom, data.karaokeLyric || "");
 
   // 使用当前设置重新解析歌词
-  updateLyricLinesAtom();
+  void updateLyricLinesAtom();
 }
 
 /**
@@ -404,13 +413,14 @@ export function initPlayerService(timer: Timer, settings: SettingsLyric) {
  */
 export function updateSettings(settings: SettingsLyric) {
   settingsRef = settings;
-  updateLyricLinesAtom();
+  void updateLyricLinesAtom();
 }
 
 /**
  * 断开 WebSocket 连接并清理资源
  */
 export function disconnectPlayerService() {
+  ++lyricParseRevision;
   if (reconnectTimeout) {
     clearTimeout(reconnectTimeout);
     reconnectTimeout = null;
