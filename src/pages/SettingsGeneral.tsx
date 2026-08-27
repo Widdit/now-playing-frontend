@@ -145,9 +145,9 @@ const TabTitle: React.FC<{ icon: React.ReactNode; label: string }> = ({icon, lab
   }, []);
 
   const content = (
-    <div className="flex min-w-0 items-center justify-center gap-0 min-[644px]:gap-2">
-      <span className="flex shrink-0 items-center justify-center">{icon}</span>
-      <span className="hidden min-w-0 truncate min-[644px]:inline font-poppins">{label}</span>
+    <div className="flex items-center space-x-0 min-[644px]:space-x-2">
+      {icon}
+      <span className="hidden min-[644px]:inline font-poppins">{label}</span>
     </div>
   );
 
