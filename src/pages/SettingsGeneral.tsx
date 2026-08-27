@@ -9,7 +9,7 @@ import {
   InfoCircle,
   QuestionCircle,
 } from "@mynaui/icons-react";
-import { Folder } from "lucide-react"
+import { Folder, Globe } from "lucide-react"
 import { useDisclosure } from "@heroui/use-disclosure";
 import {
   Modal,
@@ -45,8 +45,8 @@ const platformGroups = {
   domestic: ["netease", "qq", "kugou", "kuwo", "soda", "wesing"],
   foreign: ["spotify", "apple", "youtube"],
   jukebox: ["miebo", "ayna", "huahua", "bq"],
-  local: ["potplayer", "foobar", "aimp", "saltplayer"],
-  other: ["lx", "musicfree", "cider", "yesplay"],
+  local: ["potplayer", "foobar", "aimp", "salt"],
+  other: ["lx", "musicfree", "cider", "yesplay", "browser"],
 };
 
 // 音乐平台分组名称
@@ -775,7 +775,9 @@ export default function GeneralSettingsPage() {
           </AnimatedRow>
           <AnimatedRow show={visibleRows.includes("jukebox")}>
             <div className="flex flex-col gap-3 mt-4">
-              <span className="text-primary-900 text-xs font-bold">点歌机</span>
+              <span className="text-primary-900 text-xs font-bold">
+                点歌机
+              </span>
               <Tabs
                 classNames={{
                   tabList: "p-1.5",
@@ -799,7 +801,7 @@ export default function GeneralSettingsPage() {
                 />
                 <Tab
                   key="ayna"
-                  title={<TabTitle icon={<TerminalSolid size={20} />} label="卡西米尔唱片机" />}
+                  title={<TabTitle icon={<TerminalSolid size={20} color="#ffffff" />} label="卡西米尔唱片机" />}
                   onClick={changePlatform}
                 />
                 <Tab
@@ -822,16 +824,15 @@ export default function GeneralSettingsPage() {
               </span>
               <Tabs
                 classNames={{
-                  base: "w-full xl:w-3/4",
-                  tabList: "p-1.5 w-full grid grid-cols-4",
-                  tab: "h-10 min-w-0 px-2",
-                  tabContent: "text-default-600 w-full",
+                  tabList: "p-1.5",
+                  tab: "h-10",
+                  tabContent: "text-default-600",
                 }}
                 color="primary"
                 fullWidth={true}
                 radius="lg"
                 selectedKey={
-                  ["potplayer", "foobar", "aimp", "saltplayer"].includes(platform as string)
+                  ["potplayer", "foobar", "aimp", "salt"].includes(platform as string)
                     ? platform
                     : "none"
                 }
@@ -839,7 +840,7 @@ export default function GeneralSettingsPage() {
               >
                 <Tab
                   key="potplayer"
-                  title={<TabTitle icon={<PlayCircleFilled style={{ fontSize: 18 }} />} label="PotPlayer" />}
+                  title={<TabTitle icon={<PlayCircleFilled style={{ fontSize: 18, color: "#ffffff" }} />} label="PotPlayer" />}
                   onClick={changePlatform}
                 />
                 <Tab
@@ -853,8 +854,8 @@ export default function GeneralSettingsPage() {
                   onClick={changePlatform}
                 />
                 <Tab
-                  key="saltplayer"
-                  title={<TabTitle icon={<img className="h-4.5" src="/assets/saltplayer_icon.png" />} label="Salt Player" />}
+                  key="salt"
+                  title={<TabTitle icon={<img className="h-4.5" src="/assets/salt_icon.png" />} label="Salt Player" />}
                   onClick={changePlatform}
                 />
               </Tabs>
@@ -873,7 +874,7 @@ export default function GeneralSettingsPage() {
                 fullWidth={true}
                 radius="lg"
                 selectedKey={
-                  ["lx", "musicfree", "cider", "yesplay"].includes(
+                  ["lx", "musicfree", "cider", "yesplay", "browser"].includes(
                     platform as string,
                   )
                     ? platform
@@ -899,6 +900,11 @@ export default function GeneralSettingsPage() {
                 <Tab
                   key="yesplay"
                   title={<TabTitle icon={<img className="h-4.5" src="/assets/yesplay_icon.png" />} label="YesPlayMusic" />}
+                  onClick={changePlatform}
+                />
+                <Tab
+                  key="browser"
+                  title={<TabTitle icon={<Globe size={18} />} label="浏览器" />}
                   onClick={changePlatform}
                 />
               </Tabs>
