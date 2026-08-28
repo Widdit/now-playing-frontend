@@ -10,9 +10,7 @@ import {
 } from "@heroui/table";
 import { Spinner } from "@heroui/spinner";
 import { useAsyncList } from "@react-stately/data";
-import { Button } from "@heroui/button";
 import { Spacer } from "@heroui/spacer";
-import { WechatOutlined, QqOutlined } from "@ant-design/icons";
 import { Chip } from "@heroui/chip";
 import { ClockCircle } from "@mynaui/icons-react";
 import { Tooltip } from "@heroui/tooltip";
@@ -38,9 +36,8 @@ const columns = [
 
 export default function SponsorPage() {
   const [isError, setIsError] = React.useState(false);
-  const [paymentMethod, setPaymentMethod] = React.useState("wechat");
   const [updateTime, setUpdateTime] = React.useState("");
-  const [maxTableHeight, setMaxTableHeight] = React.useState(485);
+  const [maxTableHeight, setMaxTableHeight] = React.useState(520);
   const { isDesktop } = useEnv();
 
   const list = useAsyncList<SponsorRecord>({
@@ -130,7 +127,7 @@ export default function SponsorPage() {
     const calculateTableHeight = () => {
       const windowH = window.innerHeight;
 
-      let newTableHeight = Math.floor(windowH - 370);
+      let newTableHeight = Math.floor(windowH - 335);
       if (!isDesktop) {
         newTableHeight += 50;
       }
@@ -160,7 +157,7 @@ export default function SponsorPage() {
             <Suspense fallback={null}>
               <Lanyard
                 gravity={[0, -40, 0]}
-                platform={paymentMethod}
+                platform="wechat"
                 position={[0, 0, 20]}
               />
             </Suspense>
@@ -173,23 +170,11 @@ export default function SponsorPage() {
             <h1 className="text-xl text-default-800 font-bold leading-9">
               赞助我们
             </h1>
-            <p>
+            <p className="leading-6.5">
               如果您认为 <span className="font-poppins">Now Playing</span>{" "}
               对您有所帮助，欢迎赞助支持我们~
               您的支持将帮助我们更好地维护与完善项目，让本项目持续为直播社区创造价值。感谢您的支持与鼓励！
             </p>
-            <Button
-              color={paymentMethod === "wechat" ? "primary" : "success"}
-              startContent={
-                paymentMethod === "wechat" ? <QqOutlined /> : <WechatOutlined />
-              }
-              variant="flat"
-              onPress={() =>
-                setPaymentMethod(paymentMethod === "wechat" ? "qq" : "wechat")
-              }
-            >
-              {paymentMethod === "wechat" ? "切换 QQ 支付" : "切换微信支付"}
-            </Button>
 
             <Spacer x={2} />
 

@@ -21,11 +21,9 @@ import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 import * as THREE from "three";
 
 const wechatCardGLB = "/assets/card-wechat.glb";
-const qqCardGLB = "/assets/card-qq.glb";
 const lanyard = "/assets/lanyard.png";
 
 useGLTF.preload(wechatCardGLB);
-useGLTF.preload(qqCardGLB);
 useTexture.preload(lanyard);
 
 extend({ MeshLineGeometry, MeshLineMaterial });
@@ -123,10 +121,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, platform = "wechat" }: BandProps) {
     linearDamping: 4,
   };
 
-  const { nodes, materials } =
-    platform === "wechat"
-      ? (useGLTF(wechatCardGLB) as any)
-      : (useGLTF(qqCardGLB) as any);
+  const { nodes, materials } = useGLTF(wechatCardGLB) as any;
 
   const texture = useTexture(lanyard);
   const [curve] = useState(
