@@ -62,7 +62,7 @@ interface AppInfo {
   fallbackPlatform: string;
   pollInterval: number;
   weSingCachePath: string;
-  weSingCachePathExist: boolean;
+  checkWeSingCachePath: string;
   lyricSource: string;
   autoSelectBestLyric: boolean;
 }
@@ -414,7 +414,7 @@ export default function AboutPage() {
 - 备选音乐平台：${fallbackPlatformName}
 - 检测频率：${data.pollInterval} ms
 - 全民 K 歌缓存目录：${data.weSingCachePath}
-- 全民 K 歌缓存目录有效：${data.weSingCachePathExist}
+- 全民 K 歌缓存目录有效性：${data.checkWeSingCachePath}
 
 歌词设置：
 - 歌词源：${PLATFORM_MAP[data.lyricSource] ?? data.lyricSource}

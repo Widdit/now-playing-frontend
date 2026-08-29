@@ -181,7 +181,7 @@ export default function GeneralSettingsPage() {
   const [visibleRows, setVisibleRows] = useState<string[]>(getTargetVisibleRows(platform ?? "netease"),);
   const [initialized, setInitialized] = useState(false);
   const [isDetectHovered, setIsDetectHovered] = useState(false);
-  const [weSingCachePathExist, setWeSingCachePathExist] = useState(true);
+  const [weSingCachePathError, setWeSingCachePathError] = useState<string>("");
 
   const { isDesktop } = useEnv();
   const { openExternalUrl } = useOpenExternalUrl();
@@ -429,20 +429,20 @@ export default function GeneralSettingsPage() {
     }
   };
 
-  // 全民 K 歌缓存目录是否存在
+  // 全民 K 歌缓存目录是否有效
   const checkWeSingCachePath = async () => {
     try {
-      const response = await fetch("/api/system/weSingCachePathExist");
+      const response = await fetch("/api/system/checkWeSingCachePath");
 
       if (!response.ok) {
         throw new Error(`HTTP 响应错误！状态码：${response.status}`);
       }
 
       const result = await response.json();
-      setWeSingCachePathExist(result.data);
+      setWeSingCachePathError(result.data);
     } catch (error) {
-      console.error("检查全民 K 歌缓存目录是否存在失败：", error);
-      setWeSingCachePathExist(false);
+      console.error("检查全民 K 歌缓存目录是否有效失败：", error);
+      setWeSingCachePathError("检查全民 K 歌缓存目录失败");
     }
   };
 
@@ -672,8 +672,8 @@ export default function GeneralSettingsPage() {
                   size="lg"
                   isReadOnly
                   value={weSingCachePath}
-                  errorMessage="所选缓存目录不存在"
-                  isInvalid={!weSingCachePathExist}
+                  errorMessage={weSingCachePathError}
+                  isInvalid={weSingCachePathError !== ""}
                 />
                 <Tooltip
                   className="px-3"
