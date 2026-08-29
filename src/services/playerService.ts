@@ -93,6 +93,13 @@ function pairLyric(line: LyricLine, lines: CoreLyricLine[], key: TransLine) {
 }
 
 /**
+ * 判断文本是否包含日文字符（平假名或片假名）
+ */
+function containsJapanese(text: string): boolean {
+  return /[\u3040-\u309F\u30A0-\u30FF]/.test(text);
+}
+
+/**
  * 从存储在 Atom 中的原始数据解析歌词
  */
 async function parseLyricLines(settings: SettingsLyric): Promise<CoreLyricLine[]> {
@@ -205,18 +212,31 @@ async function parseLyricLines(settings: SettingsLyric): Promise<CoreLyricLine[]
       const OpenCC = await import("opencc-js");
       const converter = OpenCC.Converter({ from: "cn", to: "tw" });
       for (const line of resultLines) {
-        if (Array.isArray(line.words)) {
-          for (const word of line.words) {
-            if (typeof word.word === "string") {
-              word.word = converter(word.word);
+        // 判断该行原始歌词是否为日文，日文行的原文歌词不进行简繁转换
+        const lineText = Array.isArray(line.words)
+          ? line.words.map((word: any) => (typeof word.word === "string" ? word.word : "")).join("")
+          : "";
+        const isJapaneseLine = containsJapanese(lineText);
+
+        if (!isJapaneseLine) {
+          // 将原始歌词转换为繁体
+          if (Array.isArray(line.words)) {
+            for (const word of line.words) {
+              if (typeof word.word === "string") {
+                word.word = converter(word.word);
+              }
             }
           }
+
+          // 将音译歌词转换为繁体
+          if (typeof line.romanLyric === "string" && line.romanLyric.length > 0) {
+            line.romanLyric = converter(line.romanLyric);
+          }
         }
+
+        // 将翻译歌词转换为繁体
         if (typeof line.translatedLyric === "string" && line.translatedLyric.length > 0) {
           line.translatedLyric = converter(line.translatedLyric);
-        }
-        if (typeof line.romanLyric === "string" && line.romanLyric.length > 0) {
-          line.romanLyric = converter(line.romanLyric);
         }
       }
     }
