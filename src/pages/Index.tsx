@@ -37,6 +37,7 @@ interface AnnouncementData {
   title: string;
   timestamp: number;
   content?: string;
+  expireDays?: number;
 }
 
 export default function IndexPage() {
@@ -112,6 +113,7 @@ export default function IndexPage() {
           title: data.title,
           timestamp: data.timestamp,
           content: data.content,
+          expireDays: data.expireDays,
         });
 
         // 弹出公告模态框
