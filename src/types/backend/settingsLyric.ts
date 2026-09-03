@@ -34,6 +34,8 @@ export interface SettingsLyric {
   currentLyricEnhanced: boolean;
   lyricBaseOpacity: number;
   subLineOpacity: number;
+  topFadeRange: number;
+  bottomFadeRange: number;
   opacity: number;
   brightness: number;
   contrast: number;
@@ -81,6 +83,8 @@ export const DEFAULT_SETTINGS_LYRIC: SettingsLyric = {
   currentLyricEnhanced: false,
   lyricBaseOpacity: 0.4,
   subLineOpacity: 0.3,
+  topFadeRange: 10,
+  bottomFadeRange: 10,
   opacity: 1.0,
   brightness: 1.0,
   contrast: 1.0,

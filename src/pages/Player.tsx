@@ -445,8 +445,18 @@ export default function PlayerPage() {
               mixBlendMode: "plus-lighter",
               paddingRight: "4%",
               contain: "paint",
-              maskImage: "linear-gradient(transparent, black 10%, black 90%, transparent)",
-              WebkitMaskImage: "linear-gradient(transparent, black 10%, black 90%, transparent)",
+              maskImage: `linear-gradient(
+                transparent,
+                black ${settings.topFadeRange}%,
+                black ${100 - settings.bottomFadeRange}%,
+                transparent
+              )`,
+              WebkitMaskImage: `linear-gradient(
+                transparent,
+                black ${settings.topFadeRange}%,
+                black ${100 - settings.bottomFadeRange}%,
+                transparent
+              )`,
             }}
             animate={{
               opacity: showLyric ? 1 : 0,

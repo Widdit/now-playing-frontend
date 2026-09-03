@@ -1288,6 +1288,58 @@ export default function LyricSettingsPage() {
                   />
                 </div>
 
+                {/* 顶部渐隐范围 */}
+                <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
+                  <div className="flex flex-col gap-[2px]">
+                    <span>顶部渐隐范围</span>
+                    <span className="text-color-desc text-sm">
+                      歌词区域顶部的渐隐范围
+                    </span>
+                  </div>
+                  <NumberInput
+                    className="w-28 font-poppins"
+                    endContent={
+                      <div className="pointer-events-none flex items-center">
+                        <span className="text-default-400 text-small font-sans">%</span>
+                      </div>
+                    }
+                    labelPlacement="outside-left"
+                    maxValue={50}
+                    minValue={0}
+                    step={1}
+                    value={settings.topFadeRange}
+                    onValueChange={(val) => {
+                      setSettings(prev => ({ ...prev, topFadeRange: val }));
+                    }}
+                  />
+                </div>
+
+                {/* 底部渐隐范围 */}
+                <div className="group relative inline-flex flex-row w-full max-w-full items-center justify-between gap-20 p-0 h-16">
+                  <div className="flex flex-col gap-[2px]">
+                    <span>底部渐隐范围</span>
+                    <span className="text-color-desc text-sm">
+                      歌词区域底部的渐隐范围
+                    </span>
+                  </div>
+                  <NumberInput
+                    className="w-28 font-poppins"
+                    endContent={
+                      <div className="pointer-events-none flex items-center">
+                        <span className="text-default-400 text-small font-sans">%</span>
+                      </div>
+                    }
+                    labelPlacement="outside-left"
+                    maxValue={50}
+                    minValue={0}
+                    step={1}
+                    value={settings.bottomFadeRange}
+                    onValueChange={(val) => {
+                      setSettings(prev => ({ ...prev, bottomFadeRange: val }));
+                    }}
+                  />
+                </div>
+
                 <Divider />
 
                 <h2 className="text-base text-default-800 font-bold leading-6">
@@ -2134,8 +2186,18 @@ export default function LyricSettingsPage() {
                       mixBlendMode: "plus-lighter",
                       paddingRight: "4%",
                       contain: "paint",
-                      maskImage: "linear-gradient(transparent, black 10%, black 90%, transparent)",
-                      WebkitMaskImage: "linear-gradient(transparent, black 10%, black 90%, transparent)",
+                      maskImage: `linear-gradient(
+                        transparent,
+                        black ${settings.topFadeRange}%,
+                        black ${100 - settings.bottomFadeRange}%,
+                        transparent
+                      )`,
+                      WebkitMaskImage: `linear-gradient(
+                        transparent,
+                        black ${settings.topFadeRange}%,
+                        black ${100 - settings.bottomFadeRange}%,
+                        transparent
+                      )`,
                     }}
                   >
                     <LyricView
