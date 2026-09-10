@@ -3,8 +3,7 @@ import type { LyricLine as CoreLyricLine } from "@applemusic-like-lyrics/core";
 import {
   type LyricLine,
   parseLrc,
-  parseQrc,
-  parseYrc,
+  parseLys,
 } from "@applemusic-like-lyrics/lyric";
 import { SettingsLyric } from "@/types/backend/settingsLyric";
 import { Timer } from "@/utils/timer";
@@ -146,11 +145,7 @@ async function parseLyricLines(settings: SettingsLyric): Promise<CoreLyricLine[]
   try {
     // 判断是否有逐词歌词
     if (hasKaraokeLyric && settings.karaokeLyricEnabled) {
-      if (source === "netease") {
-        parsedLyricLines = parseYrc(karaokeLyric);
-      } else if (source === "qq" || source === "wesing") {
-        parsedLyricLines = parseQrc(karaokeLyric);
-      }
+      parsedLyricLines = parseLys(karaokeLyric);
     } else {
       parsedLyricLines = parseLrc(lrc);
     }
