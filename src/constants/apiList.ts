@@ -44,7 +44,7 @@ export const API_LIST: ApiItem[] = [
     desc: "获取歌词",
     method: "GET",
     tag: "歌词",
-    info: "注意：该接口返回的是完整歌词，而歌词时间轴解析工作是在前端完成的",
+    info: "注意：该接口统一以 LYS（Lyricify Syllable）格式返回逐字歌词",
   },
   {
     path: "/api/audio/devices",
