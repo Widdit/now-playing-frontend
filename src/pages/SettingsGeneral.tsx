@@ -42,10 +42,10 @@ import {Link} from "@heroui/link";
 
 // 音乐平台分组
 const platformGroups = {
-  domestic: ["netease", "qq", "kugou", "kuwo", "soda", "wesing"],
+  domestic: ["netease", "qq", "kugou", "kuwo", "wesing", "soda"],
   foreign: ["spotify", "apple", "youtube"],
   jukebox: ["miebo", "ayna", "huahua", "bq"],
-  local: ["potplayer", "foobar", "aimp", "salt"],
+  local: ["potplayer", "foobar", "aimp", "salt", "splayer-next"],
   other: ["lx", "musicfree", "cider", "yesplay", "browser"],
 };
 
@@ -174,6 +174,7 @@ export default function GeneralSettingsPage() {
   const [fallbackPlatform, setFallbackPlatform] = useState<Set<Key>>();
   const [pollInterval, setPollInterval] = useState<Set<Key>>();
   const [weSingCachePath, setWeSingCachePath] = useState<string>();
+  const [splayerNextPort, setSplayerNextPort] = useState<number>();
 
   const [isDetecting, setIsDetecting] = useState<boolean>(false);
   const [isConnected, setIsConnected] = useState<boolean>(false);
@@ -247,6 +248,7 @@ export default function GeneralSettingsPage() {
       fallbackPlatform: currentFallbackPlatform,
       pollInterval: currentPollInterval,
       weSingCachePath,
+      splayerNextPort,
       ...newSettings,
     };
 
@@ -341,6 +343,7 @@ export default function GeneralSettingsPage() {
         setFallbackPlatform(new Set([data.fallbackPlatform]));
         setPollInterval(new Set([String(data.pollInterval)]));
         setWeSingCachePath(data.weSingCachePath);
+        setSplayerNextPort(data.splayerNextPort);
 
       } catch (err: any) {
         console.error("通用设置加载失败", err);
@@ -832,7 +835,7 @@ export default function GeneralSettingsPage() {
                 fullWidth={true}
                 radius="lg"
                 selectedKey={
-                  ["potplayer", "foobar", "aimp", "salt"].includes(platform as string)
+                  ["potplayer", "foobar", "aimp", "salt", "splayer-next"].includes(platform as string)
                     ? platform
                     : "none"
                 }
@@ -856,6 +859,11 @@ export default function GeneralSettingsPage() {
                 <Tab
                   key="salt"
                   title={<TabTitle icon={<img className="h-4.5" src="/assets/salt_icon.png" />} label="Salt Player" />}
+                  onClick={changePlatform}
+                />
+                <Tab
+                  key="splayer-next"
+                  title={<TabTitle icon={<img className="h-4.5" src="/assets/splayer_next_icon.png" />} label="SPlayer Next" />}
                   onClick={changePlatform}
                 />
               </Tabs>
