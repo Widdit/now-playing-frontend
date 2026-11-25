@@ -33,6 +33,7 @@ import { Input } from "@heroui/input";
 import { motion, AnimatePresence } from "framer-motion";
 
 import PlatformHelpDrawer from "@/components/PlatformHelpDrawer";
+import YesPlayMusicSettings, { type YesPlayMode, type YesPlaySettingsUpdate } from "@/components/YesPlayMusicSettings";
 import { SpotifyIcon, YouTubeMusicIcon } from "@/components/Icons";
 import { PLATFORM_MAP } from "@/constants/platformMap";
 import { Sparkles } from "@/components/animate-icons/Sparkles";
@@ -175,6 +176,9 @@ export default function GeneralSettingsPage() {
   const [pollInterval, setPollInterval] = useState<Set<Key>>();
   const [weSingCachePath, setWeSingCachePath] = useState<string>();
   const [splayerNextPort, setSplayerNextPort] = useState<number>();
+  const [yesPlayMode, setYesPlayMode] = useState<YesPlayMode>("legacy");
+  const [yesPlayMcpPort, setYesPlayMcpPort] = useState(18888);
+  const [yesPlayTokenConfigured, setYesPlayTokenConfigured] = useState(false);
 
   const [isDetecting, setIsDetecting] = useState<boolean>(false);
   const [isConnected, setIsConnected] = useState<boolean>(false);
@@ -269,6 +273,7 @@ export default function GeneralSettingsPage() {
         description: "已成功修改设置",
         timeout: 2000,
       });
+      return true;
     } catch (err: any) {
       console.error("保存设置失败", err);
       addToast({
@@ -277,7 +282,18 @@ export default function GeneralSettingsPage() {
         color: "danger",
         timeout: 6000,
       });
+      return false;
     }
+  };
+
+  const saveYesPlaySettings = async (settings: YesPlaySettingsUpdate) => {
+    if (!(await saveSettings(settings))) return false;
+    setYesPlayMode(settings.yesPlayMode);
+    setYesPlayMcpPort(settings.yesPlayMcpPort);
+    if (settings.yesPlayMcpToken !== undefined) {
+      setYesPlayTokenConfigured(settings.yesPlayMcpToken !== "");
+    }
+    return true;
   };
 
   // 检查是否成功连接平台
@@ -344,6 +360,9 @@ export default function GeneralSettingsPage() {
         setPollInterval(new Set([String(data.pollInterval)]));
         setWeSingCachePath(data.weSingCachePath);
         setSplayerNextPort(data.splayerNextPort);
+        setYesPlayMode(data.yesPlayMode ?? "legacy");
+        setYesPlayMcpPort(data.yesPlayMcpPort ?? 18888);
+        setYesPlayTokenConfigured(data.yesPlayMcpTokenConfigured === true);
 
       } catch (err: any) {
         console.error("通用设置加载失败", err);
@@ -882,7 +901,7 @@ export default function GeneralSettingsPage() {
                 fullWidth={true}
                 radius="lg"
                 selectedKey={
-                  ["lx", "musicfree", "cider", "yesplay", "browser"].includes(
+                  ["lx", "musicfree", "cider", "browser"].includes(
                     platform as string,
                   )
                     ? platform
@@ -906,13 +925,30 @@ export default function GeneralSettingsPage() {
                   onClick={changePlatform}
                 />
                 <Tab
-                  key="yesplay"
-                  title={<TabTitle icon={<img className="h-4.5" src="/assets/yesplay_icon.png" />} label="YesPlayMusic" />}
-                  onClick={changePlatform}
-                />
-                <Tab
                   key="browser"
                   title={<TabTitle icon={<Globe size={18} />} label="浏览器" />}
+                  onClick={changePlatform}
+                />
+              </Tabs>
+              <Tabs
+                classNames={{
+                  tabList: "p-1.5",
+                  tab: "h-10",
+                  tabContent: "text-default-600",
+                }}
+                color="primary"
+                radius="lg"
+                selectedKey={platform === "yesplay" ? "yesplay" : "none"}
+                size="lg"
+              >
+                <Tab
+                  key="yesplay"
+                  title={
+                    <span className="flex items-center gap-2">
+                      <img alt="" className="h-4.5 shrink-0" src="/assets/yesplay_icon.png" />
+                      <span className="font-poppins text-sm">YesPlayMusic</span>
+                    </span>
+                  }
                   onClick={changePlatform}
                 />
               </Tabs>
@@ -935,6 +971,13 @@ export default function GeneralSettingsPage() {
               />
             </div>
           </Button>
+          <YesPlayMusicSettings
+            platform={platform}
+            mode={yesPlayMode}
+            port={yesPlayMcpPort}
+            tokenConfigured={yesPlayTokenConfigured}
+            onSave={saveYesPlaySettings}
+          />
         </div>
 
         <Spacer y={0} />
